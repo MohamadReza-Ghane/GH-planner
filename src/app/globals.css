@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+
+:root {
+  --background: 240 26% 10%;
+  --foreground: 0 0% 98%;
+  --card: 240 26% 14%;
+  --card-foreground: 0 0% 98%;
+  --primary: 255 92% 76%;
+  --primary-foreground: 240 26% 10%;
+  --secondary: 213 94% 68%;
+  --secondary-foreground: 240 26% 10%;
+  --muted: 240 20% 22%;
+  --muted-foreground: 240 5% 60%;
+  --border: 240 20% 20%;
+  --input: 240 20% 20%;
+  --ring: 255 92% 76%;
+  --radius: 16px;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: radial-gradient(ellipse at top right, #1e1040 0%, #0a0818 60%);
+  min-height: 100vh;
+  color: hsl(var(--foreground));
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+}
+
+.glass:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+/* Star rating */
+.star { cursor: pointer; transition: transform 0.15s; }
+.star:hover { transform: scale(1.2); }
+
+/* Animations */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-up { animation: fadeSlideUp 0.4s ease forwards; }
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(167,139,250,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(167,139,250,0); }
+}
+.pulse-ring { animation: pulse-ring 2s infinite; }
+
+/* Light mode */
+.light {
+  --background: 250 30% 97%;
+  --foreground: 240 26% 12%;
+  --card: 0 0% 100%;
+  --muted: 240 10% 92%;
+  --muted-foreground: 240 10% 40%;
+  --border: 240 10% 88%;
+  --input: 240 10% 88%;
+  --primary: 255 92% 50%;
+  --secondary: 213 94% 50%;
+}
+.light body {
+  background: radial-gradient(ellipse at top right, #ede9fe 0%, #f8f7ff 60%);
+}
+.light .glass {
+  background: rgba(255,255,255,0.75);
+  border-color: rgba(0,0,0,0.07);
+}
