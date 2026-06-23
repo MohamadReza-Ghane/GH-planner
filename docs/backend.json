@@ -1,0 +1,71 @@
+
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "An intelligent task with priority scores and AI metadata",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high", "urgent"] },
+        "priorityScore": { "type": "number" },
+        "energyLevel": { "type": "number", "description": "1-5 scale" },
+        "importance": { "type": "number" },
+        "urgency": { "type": "number" },
+        "estimatedTime": { "type": "number" },
+        "status": { "type": "string", "enum": ["todo", "in-progress", "completed", "archived"] },
+        "createdAt": { "type": "object" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "status"]
+    },
+    "Tracker": {
+      "title": "Tracker",
+      "description": "Daily health and productivity metrics",
+      "type": "object",
+      "properties": {
+        "dateKey": { "type": "string" },
+        "sleepHours": { "type": "number" },
+        "sleepQuality": { "type": "number" },
+        "studyHours": { "type": "number" },
+        "studyQuality": { "type": "number" },
+        "workoutDuration": { "type": "number" },
+        "mood": { "type": "string" },
+        "energyLevel": { "type": "number" },
+        "stressLevel": { "type": "number" },
+        "waterIntake": { "type": "number" },
+        "updatedAt": { "type": "object" }
+      }
+    },
+    "UserProgress": {
+      "title": "User Progress",
+      "description": "Gamification and productivity stats",
+      "type": "object",
+      "properties": {
+        "xp": { "type": "number" },
+        "level": { "type": "number" },
+        "productivityScore": { "type": "number" },
+        "focusScore": { "type": "number" },
+        "streak": { "type": "number" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["google.com", "password"]
+  },
+  "firestore": {
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "User tasks"
+    },
+    "/users/{userId}/tracker/{dateKey}": {
+      "schema": "Tracker",
+      "description": "Daily metrics"
+    },
+    "/users/{userId}/stats/progress": {
+      "schema": "UserProgress",
+      "description": "Global stats"
+    }
+  }
+}
